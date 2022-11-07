@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'mv-media-item-form',
@@ -14,10 +14,28 @@ export class MediaItemFormComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       meduim: new FormControl('Movies'),
-      name: new FormControl(),
-      category: new FormControl(),
-      year: new FormControl()
+      name: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern("[\\w\\-\\s\\/]+")
+      ])),
+      category: new FormControl(''),
+      year: new FormControl('', this.yearValidator)
     });
+
+  }
+
+  yearValidator(control: FormControl) {
+    if(control.value.trim().length === 0) return null;
+
+    const year = parseInt(control.value, 10);
+    const minYear = 1900;
+    const maxYear = 2100;
+    if (year >= minYear && year <= maxYear) {
+      return null;
+    }
+    return { year: true };
+    
+
 
   }
 
