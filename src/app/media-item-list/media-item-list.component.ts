@@ -56,4 +56,8 @@ export class MediaItemListComponent implements OnInit {
   ngOnInit() {
   }
 
+  onDelete() {
+    console.log('deleted');
+  }
+
 }
