@@ -8,6 +8,13 @@ import { CategoryList } from './category-list.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MediaItemFormComponent } from './media-item-form/media-item-form.component';
 
+const lookupLists = {
+    meduims :[
+        'Movies',
+        'Series'
+    ]
+}
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -21,6 +28,9 @@ import { MediaItemFormComponent } from './media-item-form/media-item-form.compon
         FavoriteDirective,
         CategoryList,
         MediaItemFormComponent
+    ],
+    providers: [
+        {provide:'lookupListToken', useValue:lookupLists}
     ],
     bootstrap: [
         AppComponent

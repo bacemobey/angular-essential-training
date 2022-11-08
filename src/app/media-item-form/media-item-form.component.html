@@ -6,8 +6,9 @@
     <li>
       <label for="medium">Medium</label>
       <select name="medium" id="medium" formControlName="meduim">
-        <option value="Movies">Movies</option>
-        <option value="Series">Series</option>
+        <option *ngFor="let meduim of lookupLists.meduims" [value]="meduim">
+          {{ meduim }}
+        </option>
       </select>
     </li>
     <li>
